@@ -1,2 +1,4 @@
-docs/
 .env
+docs/*
+!docs/script_sql/
+!docs/script_sql/lc_tickets.sql
