@@ -1,6 +1,9 @@
 <h2>Ticket n°<?= (int) $ticket['id'] ?> : <?= htmlspecialchars($ticket['titre']) ?></h2>
-<p>Statut : <strong><?= htmlspecialchars($ticket['statut']) ?></strong> | Créé le
-    <?= htmlspecialchars($ticket['date_creation']) ?></p>
+<p>Statut : <span
+        class="statut statut-<?= strtolower(htmlspecialchars($ticket['statut'])) ?>"><?= htmlspecialchars($ticket['statut']) ?></span>
+    | Créé le
+    <?= htmlspecialchars($ticket['date_creation']) ?>
+</p>
 <p><?= nl2br(htmlspecialchars($ticket['description'])) ?></p>
 <h3>Échanges</h3>
 <?php foreach ($messages as $message): ?>

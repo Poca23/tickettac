@@ -1,0 +1,38 @@
+table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.statut {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.statut-nouveau {
+  background: #1a56db;
+}
+
+.statut-resolu {
+  background: #0e7c3a;
+}
+
+.statut-nonresolu {
+  background: #c27803;
+}
+
+.statut-clos {
+  background: #6b7280;
+}
