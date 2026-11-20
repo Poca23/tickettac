@@ -10,7 +10,9 @@
         <tr>
             <td><?= (int) $ticket['id'] ?></td>
             <td><?= htmlspecialchars($ticket['titre']) ?></td>
-            <td><?= htmlspecialchars($ticket['statut']) ?></td>
+            <td><span
+                    class="statut statut-<?= strtolower(htmlspecialchars($ticket['statut'])) ?>"><?= htmlspecialchars($ticket['statut']) ?></span>
+            </td>
             <td><?= htmlspecialchars($ticket['date_creation']) ?></td>
             <td><a href="/<?= htmlspecialchars($lien) ?>?id=<?= (int) $ticket['id'] ?>">Voir</a></td>
         </tr>
