@@ -11,5 +11,11 @@
 <body>
     <header>
         <h1>TicketTac</h1>
+        <?php if (isset($_SESSION['identifiant'])): ?>
+            <nav>
+                <span><?= htmlspecialchars($_SESSION['identifiant']) ?></span>
+                <a href="/deconnexion.php">Déconnexion</a>
+            </nav>
+        <?php endif; ?>
     </header>
     <main>
