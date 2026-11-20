@@ -1,0 +1,35 @@
+<?php
+// Source : fonction executerRequete fournie par le sujet (Live Campus), adaptée pour lire le .env
+function executerRequete(string $key, ?array $params = null)
+{
+        $requetes = [
+                'recuperer-compte-par-identifiant' => 'SELECT * FROM comptes WHERE identifiant = :identifiant',
+                'voir-tickets-par-compte' => 'SELECT * FROM tickets WHERE compte_id = :compte',
+                'voir-ticket-par-id' => 'SELECT * FROM tickets WHERE id = :ticket',
+                'voir-responses-par-ticket' => 'SELECT * FROM messages WHERE ticket_id = :ticket',
+                'creer-ticket' => 'INSERT INTO tickets (compte_id, titre, description, statut, date_creation) VALUES(:compte, :titre, :description, :statut, :date_creation)',
+                'modifier-statut-ticket' => 'UPDATE tickets SET statut = :statut WHERE id = :ticket',
+                'creer-reponse' => 'INSERT INTO messages (compte_id, ticket_id, contenu, date_creation) VALUES(:compte, :ticket, :contenu, :date_creation)',
+                'voir-tickets-en-cours' => 'SELECT * FROM tickets WHERE statut != "CLOS"'
+        ];
+        if (!isset($requetes[$key])) {
+                throw new Exception('La requête n\'existe pas');
+        }
+        $sql = $requetes[$key];
+
+        $env = parse_ini_file(base('.env'));
+        $pdo = new PDO('mysql:host=' . $env['DB_HOST'] . ';dbname=' . $env['DB_NAME'], $env['DB_USER'], $env['DB_PASS']);
+        // Sans cette ligne, une erreur SQL ne déclenche pas le try/catch central
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $pdo->prepare($sql);
+        $result = $stmt->execute($params);
+        if (!str_starts_with($sql, 'SELECT')) {
+                return $result;
+        }
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (str_contains($sql, 'WHERE id')) {
+                return empty($rows) ? null : $rows[0];
+        }
+        return $rows;
+}
