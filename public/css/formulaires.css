@@ -1,0 +1,33 @@
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  font: inherit;
+  border: 1px solid #888;
+  border-radius: 0.3rem;
+}
+
+button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.7rem;
+  font: inherit;
+  color: #fff;
+  background: #1a56db;
+  border: 0;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+@media (min-width: 40rem) {
+  button {
+    width: auto;
+    padding: 0.7rem 1.5rem;
+  }
+}

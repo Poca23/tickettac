@@ -1,0 +1,1 @@
+<?php require base('vues/composants/detail-ticket.php'); ?>
